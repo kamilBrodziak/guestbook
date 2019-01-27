@@ -6,20 +6,17 @@ html, body {
 }
 
 #container {
+    background-image: url("../images/background2.jpg");
+    background-size: 100%;
+    background-position-y: 20%;
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 100%;
     grid-template-rows: 95% 5%;
-    grid-template-areas: "nav content"
-                         "footer footer";
-}
-
-nav {
-    grid-area: nav;
-    width: 100%;
-    height: 100%;
-    border: 1px solid red;
+    grid-template-areas: "content"
+                         "footer";
+    overflow: hidden;
 }
 
 main {

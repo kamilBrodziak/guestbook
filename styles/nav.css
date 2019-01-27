@@ -1,0 +1,90 @@
+#mainNav {
+    background-image: repeating-linear-gradient(#26262a, black 15%);
+    position: absolute;
+    width: 20%;
+    left: -3%;
+    top: -3%;
+    height: 10%;
+    transform: rotateZ(-25deg);
+    text-align: center;
+    border-top: 5px ridge #976C4E;
+    border-bottom: 10px ridge #976C4E;
+    box-shadow: 10px 10px 100px #AA8C6C;
+    cursor: default;
+    color: white;
+    font-weight: bold; 
+}
+
+#mainNavName {
+    font-size: 3vw;
+    display: block;
+    margin-top: 4%;
+    margin-left: -28%;
+}
+
+#mainNavList {
+    list-style-type: none;
+    width: 168%;
+    margin-top: 8%;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s all ease;
+    margin-left: -25%;
+}
+
+#mainNavList li:hover a{
+    background-color: rgba(255, 255, 255, 0.2);    
+}
+
+#mainNav:hover #mainNavList {
+    max-height: 100%;
+}
+
+#mainNavList li a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    line-height: 150%;
+}
+
+#mainNavList li {
+    background-image: repeating-linear-gradient(#26262a, black 15%);
+    font-size: 1.5vw;
+    width: calc(45% - 0.6vw);
+    border: 0.3vw ridge #976C4E;
+    border-top: 0;
+    float: left;
+}
+
+#mainNavList li:first-child {
+    text-align: end;
+}
+
+#mainNavList li:last-child {
+    text-align: left;
+}
+
+#mainNavList li:last-child a {
+    text-indent: 20%;
+}
+
+#mainNavList li:first-child a {
+    text-align: left;
+    text-indent: 35%;
+}
+
+footer {
+    border-top: 5px ridge #976C4E;
+    background-image: repeating-linear-gradient(#26262a, black 15%);
+    text-align: center;
+    font-size: 2vw;
+    padding-top: 0.1%;
+    color: white;
+}
+
+footer a {
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+}
