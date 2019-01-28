@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/nav.css">
-    <link rel="stylesheet" href="../styles/guestbook">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
     <div id="container">
@@ -16,9 +16,14 @@
                 <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
-        <main>
-            <section id="comments"></section>
-            <form id="commentForm"></form>
+        <main id="mainContent">
+            <form id="loginForm">
+                <label for="login">Login: </label>
+                <input id="login" name="login" type="text" placeholder="login..." required>
+                <label for="password">Password: </label>
+                <input id="password" name="password" type="password" placeholder="password" required>
+                <button id="loginButton">Login</button>
+            </form>
         </main>
         <footer>Site made by <a href="https://kamilbrodziak.github.io">Kamil Brodziak</a>. All rights reserved.</footer>
     </div>
