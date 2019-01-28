@@ -1,0 +1,153 @@
+#mainContent {
+    width: 66.5%;
+    margin-left: 17%;
+    margin-top: 6.5%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+}
+
+#comments {
+    /* border: 1px solid red; */
+    list-style-type: none;
+    padding-left: 0;
+    text-indent: 0;
+    height: 70%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.comment {
+    color: white;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.6vh ridge;
+    border-image: linear-gradient(to right, rgb(104, 74, 53) 0%, #976C4E 35%, transparent 70%) 1;
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    word-wrap: break-word;
+}
+
+#comments::-webkit-scrollbar, #commentContentInput::-webkit-scrollbar {
+    width: 15px;
+    cursor: pointer !important;
+}
+
+#comments::-webkit-scrollbar-thumb, #commentContentInput::-webkit-scrollbar-thumb {
+    cursor: pointer !important;
+    background-image: linear-gradient(to right, rgb(104, 74, 53), #976C4E, rgb(104, 74, 53));
+    
+}
+
+#comments::-webkit-scrollbar-track, #commentContentInput::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255, 0.9);
+}
+
+
+#comments::-webkit-scrollbar-button, #commentContentInput::-webkit-scrollbar-button {
+    background-image: linear-gradient(to right, rgb(104, 74, 53), #976C4E, rgb(104, 74, 53));
+}
+
+#comments::-webkit-scrollbar-button:hover, #comments::-webkit-scrollbar-thumb:hover,
+#commentContentInput::-webkit-scrollbar-button:hover, #commentContentInput::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(to right, rgb(104, 74, 53, 0.9),
+     rgba(151, 108, 78, 0.9), rgba(104, 74, 53, 0.9));
+}
+
+.commentContent {
+    width: 75%;
+    height: auto;
+    padding-right: 10%;
+    box-sizing: border-box;
+}
+
+.commentProperties {
+    width: 25%;
+}
+
+.commentDate {
+    width: 100%;
+}
+
+.commentName {
+    width: 100%;
+}
+
+#commentForm {
+    height: 20%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+    font-size: 1.5vw;
+    color: white;
+    display: flex;
+}
+
+#commentFormLeft {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
+#commentFormLeft span {
+    display: inline-block;
+}
+
+#commentFormRight {
+    width: 65%;
+}
+
+#commentNameInput {
+    width: 80%;
+    margin-top: 5%;
+    overflow: hidden;
+    border: 5px ridge #976C4E;
+    font-size: 1.5vw;
+    background-color: transparent;
+    color: white;
+}
+
+#commentContentInput {
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    border: 5px ridge #976C4E;
+    font-size: 1.5vw;
+    background-color: transparent;
+    color: white;
+}
+
+#commentPost {
+    font-size: 1.5vw;
+    width: 80%;
+    background-image: linear-gradient(to bottom, rgb(104, 74, 53) 20%, #976C4E 40%,
+    rgb(104, 74, 53) 60%, #976C4E 80%, rgb(104, 74, 53) 100%);
+    color: white;
+    border: 0px ridge #976C4E;
+    border-width: 3px 8px 8px 3px;
+    outline: none;
+    margin-top: 10%;
+}
+
+#commentPost:hover {
+    background-image: linear-gradient(to bottom, rgba(104, 74, 53, 0.9) 20%, rgba(151, 108, 78, 0.9) 40%,
+    rgba(104, 74, 53, 0.9) 60%, rgba(151, 108, 78, 0.9) 80%, rgba(104, 74, 53, 0.9) 100%);
+    cursor: pointer;
+}
+
+#commentPost:active {
+    border-width: 3px 3px 3px 3px;
+    margin-top: 12%;
+}
+
+

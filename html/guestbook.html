@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/nav.css">
-    <link rel="stylesheet" href="../styles/guestbook">
+    <link rel="stylesheet" href="../styles/guestbook.css">
 </head>
 <body>
     <div id="container">
@@ -16,9 +16,46 @@
                 <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
-        <main>
-            <section id="comments"></section>
-            <form id="commentForm"></form>
+        <main id="mainContent">
+            <ul id="comments">
+                <li class="comment">
+                    <div class="commentContent">Trallajsjhkasjhksahjkajshj
+                        <br><br><br><br><br>
+                        alala</div>
+                    <div class="commentProperties">
+                        <div class="commentDate">26.12.2018 22:56</div>
+                        <div class="commentName">Jakub</div>
+                    </div>
+                </li>
+                <li class="comment">
+                        <div class="commentContent">Trallajsjhkasjhksahjkajshj
+                            <br><br><br><br><br><br><br><br>
+                            alala</div>
+                        <div class="commentProperties">
+                            <div class="commentDate">26.12.2018 22:56</div>
+                            <div class="commentName">Jakub</div>
+                        </div>
+                    </li>
+                    <li class="comment">
+                            <div class="commentContent">Trallajsjhkasjsajjhsahkjsakjhjhksasajkjhsakjhaskjhkajhskhjsakjhkjashkjksjhakjaskjhhjkashkjasjhkashkjkhjaskjhaskjhkajshkjhksahjkajshj
+                                <br><br><br><br><br>
+                                alala</div>
+                            <div class="commentProperties">
+                                <div class="commentDate">26.12.2018 22:56</div>
+                                <div class="commentName">Jakub</div>
+                            </div>
+                    </li>
+            </ul>
+            <form id="commentForm">
+                <div id="commentFormLeft">
+                    <span>Add your comment!</span>
+                    <input id="commentNameInput" name="name" type="text" placeholder="Your name.." required>
+                    <button id="commentPost">Post</button>
+                </div>
+                <div id="commentFormRight">
+                    <textarea id="commentContentInput" name="comment" placeholder="Your comment.." required></textarea>
+                </div>
+            </form>
         </main>
         <footer>Site made by <a href="https://kamilbrodziak.github.io">Kamil Brodziak</a>. All rights reserved.</footer>
     </div>
