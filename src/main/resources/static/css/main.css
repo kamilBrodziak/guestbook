@@ -6,7 +6,7 @@ html, body {
 }
 
 #container {
-    background-image: url("../images/background2.jpg");
+    background-image: url("../img/background2.jpg");
     background-size: 100%;
     background-position-y: 30%;
     width: 100%;
