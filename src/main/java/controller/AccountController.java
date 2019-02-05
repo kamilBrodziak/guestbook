@@ -3,7 +3,6 @@ package controller;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import dao.*;
-import helpers.CookieCreator;
 import helpers.TwigLoader;
 import service.AccountService;
 import service.LoginService;
@@ -21,11 +20,11 @@ public class AccountController implements HttpHandler {
         DBConnector dbConnector = new DBConnector();
         LoginDAO loginDAO = new LoginDAOPostgreSQL(dbConnector);
         SessionDAO sessionDAO = new SessionDAOPostgreSQL(dbConnector);
-        CookieCreator cookieCreator = new CookieCreator();
+        CookieController cookieController = new CookieController();
         TwigLoader twigLoader = new TwigLoader();
-        this.loginService = new LoginService(loginDAO, sessionDAO, cookieCreator, twigLoader);
-        this.registerService = new RegisterService(loginDAO, sessionDAO, cookieCreator, twigLoader);
-        this.accountService = new AccountService(loginDAO, sessionDAO, cookieCreator, twigLoader);
+        this.loginService = new LoginService(loginDAO, sessionDAO, cookieController, twigLoader);
+        this.registerService = new RegisterService(loginDAO, sessionDAO, cookieController, twigLoader);
+        this.accountService = new AccountService(loginDAO, sessionDAO, cookieController, twigLoader);
     }
 
     @Override

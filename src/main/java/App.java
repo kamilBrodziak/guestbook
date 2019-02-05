@@ -2,10 +2,9 @@ import com.sun.net.httpserver.HttpServer;
 import controller.AccountController;
 import controller.GuestBookController;
 import controller.LoginController;
-import server.Static;
+import controller.Static;
 
 import java.net.InetSocketAddress;
-
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -13,6 +12,7 @@ public class App {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
         // set routes
+
         server.createContext("/static", new Static());
         server.createContext("/login", new LoginController());
         server.createContext("/guestbook", new GuestBookController());

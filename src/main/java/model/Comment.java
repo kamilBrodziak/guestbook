@@ -3,23 +3,26 @@ package model;
 import java.util.Date;
 
 public class Comment {
-    private int id, loginID;
+    private int id;
+    private String login;
     private String commentText;
     private Date date;
+    private String dateString;
 
-    public Comment(int id, int loginID, String commentText, Date date) {
+    public Comment(int id, String login, String commentText, Date date) {
         this.id = id;
-        this.loginID = loginID;
+        this.login = login;
         this.commentText = commentText;
         this.date = date;
+        this.dateString = date.toString().substring(0, 16);
     }
 
     public int getID() {
         return id;
     }
 
-    public int getLoginID() {
-        return loginID;
+    public String getLogin() {
+        return login;
     }
 
     public String getCommentText() {
@@ -28,5 +31,8 @@ public class Comment {
 
     public Date getDate() {
         return date;
-    }
+    };
+
+    public String getDateString() { return dateString; }
+
 }

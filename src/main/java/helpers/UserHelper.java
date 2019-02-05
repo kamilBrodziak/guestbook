@@ -1,6 +1,7 @@
 package helpers;
 
 import com.sun.net.httpserver.HttpExchange;
+import controller.CookieController;
 import dao.LoginDAO;
 import dao.SessionDAO;
 import model.Login;
@@ -10,23 +11,23 @@ import java.sql.SQLException;
 public class UserHelper {
     private LoginDAO loginDAO;
     private SessionDAO sessionDAO;
-    private CookieCreator cookieCreator;
+    private CookieController cookieController;
 
-    public UserHelper(LoginDAO loginDAO, SessionDAO sessionDAO, CookieCreator cookieCreator) {
+    public UserHelper(LoginDAO loginDAO, SessionDAO sessionDAO, CookieController cookieController) {
         this.loginDAO = loginDAO;
         this.sessionDAO = sessionDAO;
-        this.cookieCreator = cookieCreator;
+        this.cookieController = cookieController;
     }
 
     public boolean isLogged(HttpExchange httpExchange) throws SQLException {
-        return !cookieCreator.isNewSession(httpExchange) &&
+        return !cookieController.isNewSession(httpExchange) &&
                 sessionDAO.getSessionByCookie(
-                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).isPresent();
+                        cookieController.getSessionIdCookie(httpExchange).get().getValue()).isPresent();
     }
 
     public Login getCurrentLogged(HttpExchange httpExchange) throws SQLException {
         return loginDAO.getLoginByID(
                 sessionDAO.getSessionByCookie(
-                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).get().getLoginID()).get();
+                        cookieController.getSessionIdCookie(httpExchange).get().getValue()).get().getLoginID()).get();
     }
 }

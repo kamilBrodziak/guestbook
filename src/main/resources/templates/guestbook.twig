@@ -18,17 +18,19 @@
         </nav>
         <main id="mainContent">
             <ul id="comments">
-                <li class="comment">
-                    <div class="commentContent">Trallajsjhkasjhksahjkajshj
-                        <br><br><br><br><br>
-                        alala</div>
-                    <div class="commentProperties">
-                        <div class="commentDate">26.12.2018 22:56</div>
-                        <div class="commentName">Jakub</div>
-                    </div>
-                </li>
+                {% for comment in commentList %}
+                    <li class="comment">
+                        <div class="commentContent">
+                            {{ comment.getCommentText() }}
+                        </div>
+                        <div class="commentProperties">
+                            <div class="commentDate">{{ comment.getDateString() }}</div>
+                            <div class="commentName">{{ comment.getLogin() }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
-            <form id="commentForm">
+            <form id="commentForm" method="POST">
                 <div id="leftFormPart">
                     <h3>Add your comment!</h3>
                     <input type="submit" id="commentButton" {{ commentButton }}>

@@ -2,7 +2,7 @@ package service;
 
 import com.sun.net.httpserver.HttpExchange;
 import dao.*;
-import helpers.CookieCreator;
+import controller.CookieController;
 import helpers.TwigLoader;
 import helpers.UserHelper;
 import model.Login;
@@ -19,16 +19,16 @@ import java.util.UUID;
 public class LoginService {
     private LoginDAO loginDAO;
     private SessionDAO sessionDAO;
-    private CookieCreator cookieCreator;
+    private CookieController cookieController;
     private TwigLoader twigLoader;
     private UserHelper userHelper;
 
-    public LoginService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieCreator cookieCreator, TwigLoader twigLoader) {
+    public LoginService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieController cookieController, TwigLoader twigLoader) {
         this.loginDAO = loginDAO;
         this.sessionDAO = sessionDAO;
-        this.cookieCreator = cookieCreator;
+        this.cookieController = cookieController;
         this.twigLoader = twigLoader;
-        this.userHelper = new UserHelper(loginDAO, sessionDAO, cookieCreator);
+        this.userHelper = new UserHelper(loginDAO, sessionDAO, cookieController);
     }
 
     public boolean login(HttpExchange httpExchange, Login login) throws SQLException, IOException {
@@ -38,7 +38,7 @@ public class LoginService {
             Session session = new Session(UUID.randomUUID().toString(),
                     loginFromDB.get().getId(),
                     new Timestamp(System.currentTimeMillis()));
-            cookieCreator.createNewSession(httpExchange, session.getSession());
+            cookieController.createNewSession(httpExchange, session.getSession());
             sessionDAO.addSession(session);
             twigLoader.redirectToPage(httpExchange, "account");
             return true;
@@ -54,9 +54,9 @@ public class LoginService {
     public boolean logout(HttpExchange httpExchange) throws SQLException, IOException {
         if(isLogged(httpExchange)) {
             Session session = sessionDAO.getSessionByCookie(
-                    cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).get();
+                    cookieController.getSessionIdCookie(httpExchange).get().getValue()).get();
             sessionDAO.deleteSession(session.getSession());
-            cookieCreator.deleteCookie(httpExchange);
+            cookieController.deleteCookie(httpExchange);
             twigLoader.redirectToPage(httpExchange, "login");
             return true;
         }

@@ -4,6 +4,8 @@ import model.Comment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CommentDAOPostgreSQL implements CommentDAO{
@@ -21,16 +23,30 @@ public class CommentDAOPostgreSQL implements CommentDAO{
     }
 
     @Override
-    public Optional<Comment> getCommentByLoginID(int id) throws SQLException {
-        String query = "SELECT * FROM comments WHERE login_id=?::integer";
-        String[] args = {Integer.toString(id)};
+    public List<Comment> getCommentList() throws SQLException {
+        String query = "SELECT * FROM comments;";
+        String[] args = {};
+
+        ResultSet rs = dbConnector.executeSelect(query, args);
+        List<Comment> commentList = new ArrayList<>();
+        while(rs.next()) {
+            commentList.add(new Comment(rs.getInt("id"), rs.getString("login"),
+                    rs.getString("comment"), rs.getTimestamp("date")));
+        }
+        return commentList;
+    }
+
+    @Override
+    public Optional<Comment> getCommentByLogin(String login) throws SQLException {
+        String query = "SELECT * FROM comments WHERE login=?;";
+        String[] args = {login};
         return getComment(query, args);
     }
 
     private Optional<Comment> getComment(String query, String[] args) throws SQLException{
         ResultSet rs = dbConnector.executeSelect(query, args);
         if(rs.next()) {
-            return Optional.of(new Comment(rs.getInt("id"), rs.getInt("login_id"),
+            return Optional.of(new Comment(rs.getInt("id"), rs.getString("login"),
                     rs.getString("comment"), rs.getTimestamp("date")));
         }
         return Optional.ofNullable(null);
@@ -38,8 +54,8 @@ public class CommentDAOPostgreSQL implements CommentDAO{
 
     @Override
     public void addComment(Comment comment) throws SQLException {
-        String query = "INSERT INTO comments(login_id, comment, date) VALUES(?::integer, ?, ?::timestamp);";
-        String[] attr = {Integer.toString(comment.getLoginID()), comment.getCommentText(),
+        String query = "INSERT INTO comments(login, comment, date) VALUES(?, ?, ?::timestamp);";
+        String[] attr = {comment.getLogin(), comment.getCommentText(),
                 comment.getDate().toString()};
         dbConnector.updateSQL(query, attr);
     }

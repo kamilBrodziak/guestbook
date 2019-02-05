@@ -1,4 +1,4 @@
-package server;
+package controller;
 
 import helpers.MimeTypeResolver;
 import com.sun.net.httpserver.HttpExchange;

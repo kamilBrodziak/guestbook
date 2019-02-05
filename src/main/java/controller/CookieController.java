@@ -1,7 +1,8 @@
-package helpers;
+package controller;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import helpers.CookieHelper;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,7 +10,7 @@ import java.net.HttpCookie;
 import java.util.List;
 import java.util.Optional;
 
-public class CookieCreator {
+public class CookieController {
     private static final String SESSION_COOKIE_NAME = "sessionId";
     CookieHelper cookieHelper = new CookieHelper();
 

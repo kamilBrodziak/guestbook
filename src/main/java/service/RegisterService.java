@@ -2,7 +2,7 @@ package service;
 
 import com.sun.net.httpserver.HttpExchange;
 import dao.*;
-import helpers.CookieCreator;
+import controller.CookieController;
 import helpers.TwigLoader;
 import model.Login;
 
@@ -15,12 +15,12 @@ import java.util.Optional;
 public class RegisterService {
     LoginDAO loginDAO;
     SessionDAO sessionDAO;
-    CookieCreator cookieCreator;
+    CookieController cookieController;
     TwigLoader twigLoader;
 
-    public RegisterService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieCreator cookieCreator, TwigLoader twigLoader) {
+    public RegisterService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieController cookieController, TwigLoader twigLoader) {
         this.loginDAO = loginDAO;
-        this.cookieCreator = cookieCreator;
+        this.cookieController = cookieController;
         this.sessionDAO = sessionDAO;
         this.twigLoader = twigLoader;
     }
@@ -49,7 +49,7 @@ public class RegisterService {
         Optional<Login> login = loginDAO.getLoginByLoginName(loginName);
         if(login.isPresent()) {
             sessionDAO.deleteSessionByLoginID(login.get().getId());
-            cookieCreator.deleteCookie(httpExchange);
+            cookieController.deleteCookie(httpExchange);
             loginDAO.deleteLoginByID(login.get().getId());
             return true;
         }
