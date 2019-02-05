@@ -42,14 +42,9 @@ public class AccountController implements HttpHandler {
 
     public boolean isSubmitted(HttpExchange httpExchange, String method) throws IOException, SQLException {
         if(method.equals("GET")){
-            if(loginService.isLogged(httpExchange)) {
-                accountService.loadAccountPage(httpExchange);
-            } else {
-                loginService.redirectToLogin(httpExchange);
-            }
+            accountService.loadPage(httpExchange);
             return false;
         }
-
         return true;
     }
 }

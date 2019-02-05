@@ -79,6 +79,7 @@
 }
 
 #commentForm {
+    position: relative;
     height: 20%;
     width: 80%;
     margin-left: 10%;
@@ -86,33 +87,22 @@
     font-size: 1.5vw;
     color: white;
     display: flex;
+    flex-direction: row;
 }
 
-#commentFormLeft {
-    width: 30%;
-    height: 100%;
+#leftFormPart {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* justify-content: space-between; */
+    width: 40%;
+    height: 100%;
 }
 
-#commentFormLeft span {
-    display: inline-block;
+#rightFormPart {
+    width: 60%;
 }
 
-#commentFormRight {
-    width: 65%;
-}
-
-#commentNameInput {
-    width: 80%;
-    margin-top: 5%;
-    overflow: hidden;
-    border: 5px ridge #976C4E;
-    font-size: 1.5vw;
-    background-color: transparent;
-    color: white;
+h3 {
+    font-size: 1.6vw;
 }
 
 #commentContentInput {
@@ -127,7 +117,7 @@
     color: white;
 }
 
-#commentPost {
+#commentButton {
     font-size: 1.5vw;
     width: 80%;
     background-image: linear-gradient(to bottom, rgb(104, 74, 53) 20%, #976C4E 40%,
@@ -136,18 +126,43 @@
     border: 0px ridge #976C4E;
     border-width: 3px 8px 8px 3px;
     outline: none;
-    margin-top: 10%;
 }
 
-#commentPost:hover {
+#commentButton:hover {
     background-image: linear-gradient(to bottom, rgba(104, 74, 53, 0.9) 20%, rgba(151, 108, 78, 0.9) 40%,
     rgba(104, 74, 53, 0.9) 60%, rgba(151, 108, 78, 0.9) 80%, rgba(104, 74, 53, 0.9) 100%);
     cursor: pointer;
 }
 
-#commentPost:active {
+#commentButton:active {
     border-width: 3px 3px 3px 3px;
-    margin-top: 12%;
+    margin-top:     2%;
 }
+
+#commentButton[disabled] {
+    background-image: linear-gradient(to bottom, rgb(79, 76, 66) 20%, #636056 40%,
+    rgb(71, 69, 68) 60%, #636056 80%, rgb(79, 76, 66) 100%);
+}
+
+#commentButton[disabled]:hover {
+    background-image: linear-gradient(to bottom, rgb(79, 76, 66) 20%, #636056 40%,
+    rgb(71, 69, 68) 60%, #636056 80%, rgb(79, 76, 66) 100%);
+    cursor: default;
+}
+
+.displayInfo {
+    display: block;
+    font-size: 1.5vw;
+    color: red;
+    position: absolute;
+    right: 5%;
+    bottom: 15%;
+}
+
+.hideInfo {
+    display: none;
+}
+
+
 
 

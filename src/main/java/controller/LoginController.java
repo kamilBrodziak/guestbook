@@ -48,11 +48,7 @@ public class LoginController implements HttpHandler {
 
     public boolean isSubmitted(HttpExchange httpExchange, String method) throws IOException, SQLException {
         if(method.equals("GET")){
-            if(loginService.isLogged(httpExchange)) {
-                loginService.redirectToAccount(httpExchange);
-            } else {
-                loginService.loadLoginPage(httpExchange, "hideInfo");
-            }
+            loginService.loadPage(httpExchange);
             return false;
         }
 

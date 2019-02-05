@@ -14,7 +14,7 @@
 //    public void handle(HttpExchange httpExchange) throws IOException {
 //
 //        // get a template file
-//        JtwigTemplate template = JtwigTemplate.classpathTemplate("static/templates/index.twig");
+//        JtwigTemplate template = JtwigTemplate.classpathTemplate("static/templates/guestbook.twig");
 //
 //        // create a model that will be passed to a template
 //        JtwigModel model = JtwigModel.newModel();

@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import dao.*;
 import helpers.CookieCreator;
 import helpers.TwigLoader;
+import helpers.UserHelper;
 import model.Login;
 import model.Session;
 
@@ -16,16 +17,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class LoginService {
-    LoginDAO loginDAO;
-    SessionDAO sessionDAO;
-    CookieCreator cookieCreator;
-    TwigLoader twigLoader;
+    private LoginDAO loginDAO;
+    private SessionDAO sessionDAO;
+    private CookieCreator cookieCreator;
+    private TwigLoader twigLoader;
+    private UserHelper userHelper;
 
     public LoginService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieCreator cookieCreator, TwigLoader twigLoader) {
         this.loginDAO = loginDAO;
         this.sessionDAO = sessionDAO;
         this.cookieCreator = cookieCreator;
         this.twigLoader = twigLoader;
+        this.userHelper = new UserHelper(loginDAO, sessionDAO, cookieCreator);
     }
 
     public boolean login(HttpExchange httpExchange, Login login) throws SQLException, IOException {
@@ -45,9 +48,7 @@ public class LoginService {
     }
 
     public boolean isLogged(HttpExchange httpExchange) throws SQLException {
-        return !cookieCreator.isNewSession(httpExchange) &&
-                sessionDAO.getSessionByCookie(
-                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).isPresent();
+        return userHelper.isLogged(httpExchange);
     }
 
     public boolean logout(HttpExchange httpExchange) throws SQLException, IOException {
@@ -60,12 +61,6 @@ public class LoginService {
             return true;
         }
         return false;
-    }
-
-    public Login getCurrentLogged(HttpExchange httpExchange) throws SQLException {
-        return loginDAO.getLoginByID(
-                sessionDAO.getSessionByCookie(
-                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).get().getLoginID()).get();
     }
 
     public void redirectToAccount(HttpExchange httpExchange) throws IOException {
@@ -83,5 +78,13 @@ public class LoginService {
         twigAttrMap.put("registerCompleteInfo", "hideInfo");
         String response = twigLoader.loadTemplate(httpExchange, "login", twigAttrMap);
         twigLoader.sendResponse(httpExchange, response);
+    }
+
+    public void loadPage(HttpExchange httpExchange) throws SQLException, IOException {
+        if(isLogged(httpExchange)) {
+            redirectToAccount(httpExchange);
+        } else {
+            loadLoginPage(httpExchange, "hideInfo");
+        }
     }
 }

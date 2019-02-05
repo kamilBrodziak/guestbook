@@ -29,14 +29,14 @@
                 </li>
             </ul>
             <form id="commentForm">
-                <div id="commentFormLeft">
-                    <span>Add your comment!</span>
-                    <input id="commentNameInput" name="name" type="text" placeholder="Your name.." required>
-                    <button id="commentPost">Post</button>
+                <div id="leftFormPart">
+                    <h3>Add your comment!</h3>
+                    <input type="submit" id="commentButton" {{ commentButton }}>
                 </div>
-                <div id="commentFormRight">
-                    <textarea id="commentContentInput" name="comment" placeholder="Your comment.." required></textarea>
+                <div id="rightFormPart">
+                    <textarea id="commentContentInput" name="comment" placeholder="Your comment.." required {{ commentInput }}></textarea>
                 </div>
+                <h2 class="{{ commentInfo }}">You must be logged in to post comment!</h2>
             </form>
         </main>
         <footer>Site made by <a href="https://kamilbrodziak.github.io">Kamil Brodziak</a>. All rights reserved.</footer>
