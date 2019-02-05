@@ -19,11 +19,17 @@
         <main id="mainContent">
             <form id="loginForm">
                 <label for="login">Login: </label>
-                <input id="login" name="login" type="text" placeholder="login..." required>
+                <input id="login" name="login" type="text" placeholder="login..." minlength="5" maxlength="30" required>
                 <label for="password">Password: </label>
-                <input id="password" name="password" type="password" placeholder="password" required>
+                <input id="password" name="password" type="password" minlength="5" maxlength="30" required>
+                <input type="radio" name="log/reg" value="login" checked>
+                <input type="radio" name="log/reg" value="register">
                 <button id="loginButton">Login</button>
             </form>
+            <p class="{{ loginInfo }}">Wrong login or password!</p>
+            <p class="{{ registerWrongInfo }}">Login already used!</p>
+            <p class="{{ registerCompleteInfo }}">Registration completed! You can now log in!</p>
+
         </main>
         <footer>Site made by <a href="https://kamilbrodziak.github.io">Kamil Brodziak</a>. All rights reserved.</footer>
     </div>

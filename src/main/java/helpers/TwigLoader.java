@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class TwigLoader {
 
-        public String loadTemplate(HttpExchange httpExchange, String templateName,
+    public String loadTemplate(HttpExchange httpExchange, String templateName,
                              Map<String, Object> tempAttr) throws IOException{
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/" + templateName + ".twig");
         String response = template.render(createModel(tempAttr));
