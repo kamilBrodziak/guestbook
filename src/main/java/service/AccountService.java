@@ -32,6 +32,7 @@ public class AccountService {
         String loginName = loginDAO.getLoginByID(sessionDAO.getSessionByCookie(
                 cookieController.getSessionIdCookie(httpExchange).get().getValue()).get().getLoginID()).get().getLogin();
         twigAttrMap.put("login", loginName);
+        twigAttrMap.put("accountNav", "Account");
         String response = twigLoader.loadTemplate(httpExchange, "account", twigAttrMap);
         twigLoader.sendResponse(httpExchange, response);
     }

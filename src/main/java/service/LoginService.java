@@ -67,15 +67,12 @@ public class LoginService {
         twigLoader.redirectToPage(httpExchange, "account");
     }
 
-    public void redirectToLogin(HttpExchange httpExchange) throws IOException {
-        twigLoader.redirectToPage(httpExchange, "login");
-    }
-
     public void loadLoginPage(HttpExchange httpExchange, String twigAttr) throws IOException {
         Map<String, Object> twigAttrMap = new HashMap<>();
         twigAttrMap.put("loginInfo", twigAttr);
         twigAttrMap.put("registerWrongInfo", "hideInfo");
         twigAttrMap.put("registerCompleteInfo", "hideInfo");
+        twigAttrMap.put("accountNav", "Login");
         String response = twigLoader.loadTemplate(httpExchange, "login", twigAttrMap);
         twigLoader.sendResponse(httpExchange, response);
     }

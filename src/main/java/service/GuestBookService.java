@@ -44,10 +44,12 @@ public class GuestBookService {
 
         if(userHelper.isLogged(httpExchange)) {
             twigAttrMap.put("commentInfo", "hideInfo");
+            twigAttrMap.put("accountNav", "Account");
         } else {
             twigAttrMap.put("commentInput", "readonly");
             twigAttrMap.put("commentButton", "disabled");
             twigAttrMap.put("commentInfo", "displayInfo");
+            twigAttrMap.put("accountNav", "Login");
         }
         String response = twigLoader.loadTemplate(httpExchange, "guestbook", twigAttrMap);
         twigLoader.sendResponse(httpExchange, response);
