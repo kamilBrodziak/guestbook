@@ -7,7 +7,13 @@
     flex-direction: column;
 }
 
-#loginForm {
+#welcome {
+    color: white;
+    font-size: 4vw;
+    text-align: center;
+}
+
+#logoutForm {
     height: 80%;
     width: 80%;
     margin-left: 10%;
@@ -18,18 +24,7 @@
     flex-direction: column;
 }
 
-#login, #password {
-    width: 100%;
-    margin-bottom: 5%;
-    overflow: hidden;
-    border: 5px ridge #976C4E;
-    font-size: 1.5vw;
-    background-color: transparent;
-    color: white;
-}
-
-
-#loginButton {
+#logoutButton {
     font-size: 1.5vw;
     width: 100%;
     height: 10%;
@@ -42,26 +37,15 @@
     margin-top: 10%;
 }
 
-#loginButton:hover {
+#logoutButton:hover {
     background-image: linear-gradient(to bottom, rgba(104, 74, 53, 0.9) 20%, rgba(151, 108, 78, 0.9) 40%,
     rgba(104, 74, 53, 0.9) 60%, rgba(151, 108, 78, 0.9) 80%, rgba(104, 74, 53, 0.9) 100%);
     cursor: pointer;
 }
 
-#loginButton:active {
+#logoutButton:active {
     border-width: 3px 3px 3px 3px;
     margin-top: 11%;
-}
-
-.hideInfo {
-    display: none;
-}
-
-.displayInfo {
-    display: inline-block;
-    color: red;
-    font-size: 1.5vw;
-    text-align: center;
 }
 
 

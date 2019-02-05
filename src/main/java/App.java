@@ -1,4 +1,5 @@
 import com.sun.net.httpserver.HttpServer;
+import controller.AccountController;
 import controller.GuestBookController;
 import controller.LoginController;
 import server.Static;
@@ -15,6 +16,8 @@ public class App {
         server.createContext("/static", new Static());
         server.createContext("/login", new LoginController());
         server.createContext("/guestbook", new GuestBookController());
+        server.createContext("/account", new AccountController());
+
 
         server.setExecutor(null); // creates a default executor
 

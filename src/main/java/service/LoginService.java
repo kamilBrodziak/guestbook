@@ -1,7 +1,6 @@
 package service;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import dao.*;
 import helpers.CookieCreator;
 import helpers.TwigLoader;
@@ -20,7 +19,7 @@ public class LoginService {
     LoginDAO loginDAO;
     SessionDAO sessionDAO;
     CookieCreator cookieCreator;
-    TwigLoader twigLoader = new TwigLoader();
+    TwigLoader twigLoader;
 
     public LoginService(LoginDAO loginDAO, SessionDAO sessionDAO, CookieCreator cookieCreator, TwigLoader twigLoader) {
         this.loginDAO = loginDAO;
@@ -48,10 +47,7 @@ public class LoginService {
     public boolean isLogged(HttpExchange httpExchange) throws SQLException {
         return !cookieCreator.isNewSession(httpExchange) &&
                 sessionDAO.getSessionByCookie(
-                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).isPresent() &&
-                loginDAO.getLoginByID(
-                        sessionDAO.getSessionByCookie(
-                                cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).get().getLoginID()).isPresent();
+                        cookieCreator.getSessionIdCookie(httpExchange).get().getValue()).isPresent();
     }
 
     public boolean logout(HttpExchange httpExchange) throws SQLException, IOException {
@@ -76,6 +72,9 @@ public class LoginService {
         twigLoader.redirectToPage(httpExchange, "account");
     }
 
+    public void redirectToLogin(HttpExchange httpExchange) throws IOException {
+        twigLoader.redirectToPage(httpExchange, "login");
+    }
 
     public void loadLoginPage(HttpExchange httpExchange, String twigAttr) throws IOException {
         Map<String, Object> twigAttrMap = new HashMap<>();

@@ -4,21 +4,20 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import dao.*;
 import helpers.CookieCreator;
-import helpers.FormParser;
 import helpers.TwigLoader;
-import model.Login;
+import service.AccountService;
 import service.LoginService;
 import service.RegisterService;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Map;
 
-public class LoginController implements HttpHandler {
+public class AccountController implements HttpHandler {
     private LoginService loginService;
     private RegisterService registerService;
+    private AccountService accountService;
 
-    public LoginController() {
+    public AccountController() {
         DBConnector dbConnector = new DBConnector();
         LoginDAO loginDAO = new LoginDAOPostgreSQL(dbConnector);
         SessionDAO sessionDAO = new SessionDAOPostgreSQL(dbConnector);
@@ -26,6 +25,7 @@ public class LoginController implements HttpHandler {
         TwigLoader twigLoader = new TwigLoader();
         this.loginService = new LoginService(loginDAO, sessionDAO, cookieCreator, twigLoader);
         this.registerService = new RegisterService(loginDAO, sessionDAO, cookieCreator, twigLoader);
+        this.accountService = new AccountService(loginDAO, sessionDAO, cookieCreator, twigLoader);
     }
 
     @Override
@@ -33,13 +33,7 @@ public class LoginController implements HttpHandler {
         try {
             String method = httpExchange.getRequestMethod();
             if(isSubmitted(httpExchange, method)) {
-                Map<String, String> inputs = FormParser.parseFormData(httpExchange);
-                Login login = new Login(0, inputs.get("login"), inputs.get("password"));
-                if (inputs.get("logReg").equals("login")) {
-                    loginService.login(httpExchange, login);
-                } else {
-                    registerService.register(httpExchange, login);
-                }
+                loginService.logout(httpExchange);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,9 +43,9 @@ public class LoginController implements HttpHandler {
     public boolean isSubmitted(HttpExchange httpExchange, String method) throws IOException, SQLException {
         if(method.equals("GET")){
             if(loginService.isLogged(httpExchange)) {
-                loginService.redirectToAccount(httpExchange);
+                accountService.loadAccountPage(httpExchange);
             } else {
-                loginService.loadLoginPage(httpExchange, "hideInfo");
+                loginService.redirectToLogin(httpExchange);
             }
             return false;
         }

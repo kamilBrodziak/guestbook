@@ -12,19 +12,19 @@
         <nav id="mainNav">
             <span id="mainNavName">Menu</span>
             <ul id="mainNavList">
-                <li><a href="index">GuestBook</a></li>
+                <li><a href="guestbook">GuestBook</a></li>
                 <li><a href="login">Login</a></li>
             </ul>
         </nav>
         <main id="mainContent">
-            <form id="loginForm">
+            <form id="loginForm" method="POST">
                 <label for="login">Login: </label>
                 <input id="login" name="login" type="text" placeholder="login..." minlength="5" maxlength="30" required>
                 <label for="password">Password: </label>
                 <input id="password" name="password" type="password" minlength="5" maxlength="30" required>
-                <input type="radio" name="log/reg" value="login" checked>
-                <input type="radio" name="log/reg" value="register">
-                <button id="loginButton">Login</button>
+                Login <input type="radio" name="logReg" value="login" checked>
+                Register <input type="radio" name="logReg" value="register">
+                <input type="submit" id="loginButton" value="Submit">
             </form>
             <p class="{{ loginInfo }}">Wrong login or password!</p>
             <p class="{{ registerWrongInfo }}">Login already used!</p>

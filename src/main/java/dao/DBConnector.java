@@ -29,10 +29,11 @@ public class DBConnector {
     public void updateSQL(String query, String[] attr) throws SQLException {
         this.connect();
         PreparedStatement pstmt = preparePSTMT(query, attr);
+        System.out.println(pstmt);
         pstmt.executeUpdate();
+        conn.commit();
         pstmt.close();
         this.disconnect();
-        conn.close();
     }
 
     private PreparedStatement preparePSTMT(String query, String[] attr) throws SQLException {
@@ -41,7 +42,7 @@ public class DBConnector {
             throw new InvalidParameterException();
         }
         for(int i = 1; i <= attr.length; ++i) {
-            pstmt.setString(i, attr[i - 1]);
+            pstmt.setString(i, attr[i - 1].replaceAll("\\\"", ""));
         }
 
         return pstmt;
